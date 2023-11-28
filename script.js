@@ -6,7 +6,7 @@ const divide = (arr, n) => {
 
   for (const num of arr) {
     // If adding the current element to the current subarray keeps the sum within the limit
-    if (currentSubarray.reduce((sum, el) => sum + el, 0) + num <= n) {
+    if (currentSubarray.reduce((sum, el) => sum + el) + num <= n) {
       currentSubarray.push(num);
     } else {
       // Start a new subarray with the current element
