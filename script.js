@@ -18,7 +18,7 @@ const divide = (arr, n) => {
   // Add the last subarray to the result
   result.push([...currentSubarray]);
 
-  return result;
+  return result+currentSubarray;
 };
 
 const n = prompt("Enter n: ");
