@@ -1,27 +1,27 @@
-const arr = [1, 2, 3, 4, 1, 0, 2, 2];
+function divide(arr, n) {
+    const result = [];
+    let currentSubarray = [];
+    let currentSum = 0;
 
-const divide = (arr, n) => {
-  const result = [];
-  let currentSubarray = [];
-
-  for (const num of arr) {
-    // If adding the current element to the current subarray keeps the sum within the limit
-    if (currentSubarray.reduce((sum, el) => sum + el, 0) + num <= n) {
-      currentSubarray.push(num);
-    } else {
-      // Start a new subarray with the current element
-      result.push([...currentSubarray]);
-      currentSubarray = [num];
+    for (let i = 0; i < arr.length; i++) {
+        if (currentSum + arr[i] <= n) {
+            currentSubarray.push(arr[i]);
+            currentSum += arr[i];
+        } else {
+            result.push(currentSubarray);
+            currentSubarray = [arr[i]];
+            currentSum = arr[i];
+        }
     }
-  }
 
-  // Add the last subarray to the result
-  result.push([...currentSubarray]);
+    // Push the last subarray if it's not empty
+    if (currentSubarray.length > 0) {
+        result.push(currentSubarray);
+    }
 
-  return result+currentSubarray;
-};
+    return result;
+}
 
-const n = prompt("Enter n: ");
-alert(JSON.stringify(divide(arr, parseInt(n))));
-
-
+// Examples
+console.log(divide([1, 2, 3, 4, 1, 0, 2, 2], 5)); // [[1, 2], [3], [4, 1, 0], [2, 2]]
+console.log(divide([4, 3, 2, 1], 4));            // [[4], [3], [2], [1]]
